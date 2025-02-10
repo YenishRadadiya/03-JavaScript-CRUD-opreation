@@ -1,11 +1,13 @@
 class Product {
-    constructor() {
-        prod_id = this.prod_id;
-        prod_name = this.prod_name;
-        prod_price = this.prod_price;
-        prod_img = this.prod_img;
-        prod_desc = this.prod_desc;
+    constructor(id, name, price, img, desc) {
+        this.prod_id = id;
+        this.prod_name = name;
+        this.prod_price = price;
+        this.prod_img = img;
+        this.prod_desc = desc;
     }
-
-
 }
+
+
+
+export default Product;
