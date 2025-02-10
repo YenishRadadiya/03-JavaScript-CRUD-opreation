@@ -1,0 +1,128 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Main Container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Left Container - Image Upload */
+.left-container {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.left-container input {
+  display: block;
+  margin: auto;
+  padding: 10px;
+  border: 2px dashed #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Right Container - Product Details */
+.right-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.product_data {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input Fields */
+.product_data input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+} /* Product Name & Price - Standard Input */
+#product-name input,
+#product-price input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Product Description - Larger Input */
+/* Product Description - Larger Text Area */
+#product-desc textarea {
+  width: 100%;
+  height: 120px; /* Adjust height for paragraph display */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: vertical; /* Allows users to expand the field */
+  line-height: 1.5; /* Better text readability */
+  overflow-y: auto; /* Enables scrolling if text exceeds area */
+  display: block;
+}
+button {
+  height: 30px;
+  width: 70px;
+  margin: 10px;
+  background-color: #ddd;
+  border: 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .left-container {
+    margin-bottom: 20px;
+  }
+}
