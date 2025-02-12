@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="../asset/AddProduct.css" />
     <script type="module">
         import { imageUploaded } from "../util/AddProduct.js";
-
         window.imageUploaded = imageUploaded;
     </script>
     <script type="module">
-        // Get query parameters from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const mode = urlParams.get('mode');
 
-        // Dynamically load the correct script
         if (mode === 'edit') {
             import("../util/editProduct.js")
                 .then(() => console.log("Edit Product Script Loaded"))
@@ -27,23 +24,25 @@
                 .catch((error) => console.error("Failed to load addProduct.js", error));
         }
     </script>
-
 </head>
 
 <body>
     <div class="header">
-        <span id="page_title">Add Product</span><button onclick="document.location.href='../index.html'">Home</button>
+        <span id="page_title">Add Product</span>
+        <button onclick="document.location.href='../index.html'">Home</button>
     </div>
     <div class="container">
         <form name="product" id="product-form">
-            <!-- Product image -->
+            <!-- Product Image Preview & Upload -->
             <div class="left-container">
-                <input type="file" accept="image/jpeg,image/png,image/jpg" name="" id="img_product" src=""
+                <img id="img_preview" src="" alt="Image Preview"
+                    style="display: none; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px;">
+                <input type="file" accept="image/jpeg,image/png,image/jpg" id="img_product"
                     onchange="imageUploaded()" />
             </div>
-            <!-- Product details -->
+
+            <!-- Product Details -->
             <div class="right-container">
-                <!-- Product Description -->
                 <div class="product_data">
                     <div id="product-name">
                         Name:

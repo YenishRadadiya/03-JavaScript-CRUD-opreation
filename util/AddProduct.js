@@ -4,7 +4,8 @@ let title = document.getElementById("page_title");
 title.innerText = "Add Product";
 
 export function imageUploaded(callback) {
-    let fileInput = document.querySelector("input[type=file]");
+    let fileInput = document.querySelector("#img_product");
+    let preview = document.querySelector("#img_preview");
     let file = fileInput.files[0];
 
     if (!file) {
@@ -16,7 +17,8 @@ export function imageUploaded(callback) {
 
     reader.onload = function (event) {
         let base64String = event.target.result;
-        console.log("Base64 Image: ", base64String);
+        preview.src = base64String;
+        preview.style.display = "block";
 
         if (callback) callback(base64String);
     };
@@ -33,7 +35,6 @@ productForm.addEventListener("submit", function (event) {
         ? JSON.parse(localStorage.getItem("crud_product"))
         : [];
 
-    // Determine the next prod_id dynamically
     let prod_id = product_list.length > 0
         ? Math.max(...product_list.map(p => p.prod_id)) + 1
         : 1;
@@ -54,5 +55,6 @@ productForm.addEventListener("submit", function (event) {
         localStorage.setItem("crud_product", JSON.stringify(product_list));
 
         productForm.reset();
+        document.getElementById("img_preview").style.display = "none"; // Hide preview after submission
     });
 });
