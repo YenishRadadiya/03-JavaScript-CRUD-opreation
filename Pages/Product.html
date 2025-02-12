@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="../asset/product.css">
+    <script defer type="module" src="../util/loadProduct.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div><button onclick="document.location.href='../index.html'">Home</button></div>
+
+        <div class="product_data">
+            <!-- Product image -->
+            <div class="left-container">
+                <img id="prod_img" src="" alt="Product Image">
+            </div>
+            <!-- Product details -->
+            <div class="right-container">
+                <!-- Product Description -->
+                <div class="product-description">
+                    <h1 id="prod_name"></h1>
+                    <p id="prod_desc"></p>
+                </div>
+                <!-- Product Pricing -->
+                <div class="product-price">
+                    $<span id="prod_price"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

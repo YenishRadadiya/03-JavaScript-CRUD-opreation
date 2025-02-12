@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../asset/AddProduct.css" />
+    <script type="module">
+        import { imageUploaded } from "../util/AddProduct.js";
+        window.imageUploaded = imageUploaded;
+    </script>
+    <script type="module">
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+
+        if (mode === 'edit') {
+            import("../util/editProduct.js")
+                .then(() => console.log("Edit Product Script Loaded"))
+                .catch((error) => console.error("Failed to load editProduct.js", error));
+        } else {
+            import("../util/AddProduct.js")
+                .then(() => console.log("Add Product Script Loaded"))
+                .catch((error) => console.error("Failed to load addProduct.js", error));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <span id="page_title">Add Product</span>
+        <button onclick="document.location.href='../index.html'">Home</button>
+    </div>
+    <div class="container">
+        <form name="product" id="product-form">
+            <!-- Product Image Preview & Upload -->
+            <div class="left-container">
+                <img id="img_preview" src="" alt="Image Preview"
+                    style="display: none; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px;">
+                <input type="file" accept="image/jpeg,image/png,image/jpg" id="img_product"
+                    onchange="imageUploaded()" />
+            </div>
+
+            <!-- Product Details -->
+            <div class="right-container">
+                <div class="product_data">
+                    <div id="product-name">
+                        Name:
+                        <br />
+                        <input type="text" name="name" id="txt_product_name" />
+                    </div>
+                    <div id="product-desc">
+                        Description
+                        <br />
+                        <textarea name="description" id="txt_product_desc"></textarea>
+                    </div>
+                    <div id="product-price">
+                        Price:
+                        <br />
+                        <!-- <input type="number" name="price" id="txt_product_price" /> -->
+                        <input type="number" name="price" id="txt_product_price" step="0.01" min="0" />
+
+                    </div>
+                    <input type="submit" />
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

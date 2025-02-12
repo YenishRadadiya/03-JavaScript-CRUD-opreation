@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Product 360</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer type="module" src="script.js"></script>
+    <script defer type="module" src="./util/Product.js"></script>
+    <script type="module">
+        import { handleClearAll, handleOperation, searchProduct } from "./script.js";
+
+        window.handleClearAll = handleClearAll;
+        window.handleOperation = handleOperation;
+        window.searchProduct = searchProduct;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tbl-container">
+            <div class="tbl-container-header">
+                <span>Product Page</span>
+                <div class="header-operation">
+                    <div>
+                        <b>Filter by:</b>
+                        <input type="number" placeholder="Search by product Id" id="search_id" />
+                        <button onclick="searchProduct()">Search</button>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="sortOptions"><b>Sort by:</b></label>
+                            <select id="sortOptions">
+                                <option value="id">ID</option>
+                                <option value="name">Name</option>
+                                <option value="price">Price</option>
+                            </select>
+                            <button id="sortButton">Sort <i class="fa fa-sort"></i></button>
+                            <button onclick="document.location.href='./Pages/AddProduct.html'">
+                                Add <i class="fa fa-plus"></i>
+                            </button>
+                            <button class="btn-dlt" onclick="handleClearAll()">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-table">
+                <table id="product_table">
+                </table>
+            </div>
+            <div id="no-product">
+                <img src="asset/no-product.jpg" alt="No Product found ">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
