@@ -1,5 +1,3 @@
-import { base64ToFile } from "./util/handleImage.js";
-
 const table = document.getElementById("product_table");
 const sortOptions = document.getElementById("sortOptions");
 var prod_list = JSON.parse(localStorage.getItem("crud_product")) || [];
@@ -8,15 +6,14 @@ const no_product = document.getElementById("no-product");
 // Function to append a single product row
 export function appendProductRow(product) {
     let tr = document.createElement("tr");
-    let url = base64ToFile(product.prod_img, "image/jpeg");
 
     tr.innerHTML = `
-        <td style="width: 2%">${product.prod_id}</td>
-        <td style="width: 30%"><img src='${url}' alt="Product" /></td>
-        <td style="width: 15%">${product.prod_name}</td>
-        <td>${product.prod_desc}</td>
-        <td style="width: 5%">${product.prod_price}</td>
-        <td style="width: 10%">
+        <td style="width: 5%">${product.prod_id}</td>
+        <td style="width: 15%"><img src="${product.prod_img}" alt="Product" /></td>
+        <td style="width: 20%"><p>${product.prod_name}</p></td>
+        <td style="width: 35%"><p>${product.prod_desc}</p></td>
+        <td style="width: 10%">${product.prod_price}</td>
+        <td style="width: 15%">
             <button class="btn_view" onclick="window.location.href='./Pages/Product.html?id=${product.prod_id}'">View <i class="fa fa-eye"></i></button>
             <button class="btn-edit" onclick="window.location.href='./Pages/AddProduct.html?mode=edit&id=${product.prod_id}'">Edit <i class="fa fa-edit"></i></button>
             <button class="btn-dlt" onclick="handleOperation(${product.prod_id})">Delete <i class="fa fa-trash-o"></i></button>
@@ -24,6 +21,7 @@ export function appendProductRow(product) {
 
     table.appendChild(tr);
 }
+
 
 // Function to load products into the table
 export function loadProducts() {

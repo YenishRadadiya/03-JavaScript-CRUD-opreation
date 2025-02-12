@@ -13,8 +13,15 @@ export function imageUploaded(callback) {
         return;
     }
 
-    let reader = new FileReader();
+    // File size validation (1MB limit)
+    if (file.size > 1024 * 1024) { // 1MB = 1024 * 1024 bytes
+        alert("File size must be less than 1MB!");
+        fileInput.value = "";
+        preview.style.display = "none";
+        return;
+    }
 
+    let reader = new FileReader();
     reader.onload = function (event) {
         let base64String = event.target.result;
         preview.src = base64String;
@@ -25,6 +32,34 @@ export function imageUploaded(callback) {
 
     reader.readAsDataURL(file);
 }
+
+const nameInput = document.getElementById("txt_product_name");
+const descriptionInput = document.getElementById("txt_product_desc");
+const fileInput = document.getElementById("img_product");
+
+//  validation for Name (50 characters limit)
+nameInput.addEventListener("input", function () {
+    if (nameInput.value.length > 50) {
+        alert("Product name must be 50 characters or less!");
+        nameInput.value = nameInput.value.substring(0, 50); // Trim extra characters
+    }
+});
+
+//  validation for Description (200 characters limit)
+descriptionInput.addEventListener("input", function () {
+    if (descriptionInput.value.length > 200) {
+        alert("Product description must be 200 characters or less!");
+        descriptionInput.value = descriptionInput.value.substring(0, 150);
+    }
+});
+
+//  validation on file selection
+fileInput.addEventListener("change", function () {
+    if (fileInput.files.length > 0 && fileInput.files[0].size > 1024 * 1024) {
+        alert("File size must be less than 1MB!");
+        fileInput.value = "";
+    }
+});
 
 const productForm = document.getElementById("product-form");
 
@@ -39,13 +74,23 @@ productForm.addEventListener("submit", function (event) {
         ? Math.max(...product_list.map(p => p.prod_id)) + 1
         : 1;
 
-    const name = document.getElementById("txt_product_name").value.trim();
-    const description = document.getElementById("txt_product_desc").value.trim();
+    const name = nameInput.value.trim();
+    const description = descriptionInput.value.trim();
     const price = document.getElementById("txt_product_price").value.trim();
-    const fileInput = document.getElementById("img_product");
 
+    // Validations before submitting
     if (name === "" || description === "" || price === "" || fileInput.files.length === 0) {
         alert("All fields are required!");
+        return;
+    }
+
+    if (name.length > 50) {
+        alert("Product name must be 50 characters or less!");
+        return;
+    }
+
+    if (description.length > 200) {
+        alert("Product description must be 200 characters or less!");
         return;
     }
 
@@ -55,6 +100,6 @@ productForm.addEventListener("submit", function (event) {
         localStorage.setItem("crud_product", JSON.stringify(product_list));
 
         productForm.reset();
-        document.getElementById("img_preview").style.display = "none"; // Hide preview after submission
+        document.getElementById("img_preview").style.display = "none";
     });
 });

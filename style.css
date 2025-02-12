@@ -71,7 +71,7 @@
     .btn-dlt {
       background-color: orangered;
     }
-    table {
+    /* table {
       background-color: white;
       border: 1px solid gainsboro;
       border-radius: 5px;
@@ -90,6 +90,48 @@
           height: 200px;
         }
       }
+    } */
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+      vertical-align: middle;
+    }
+
+    /* Image Column */
+    td:nth-child(2) img {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: auto;
+    }
+
+    /* Name and Description Columns */
+    td:nth-child(3),
+    td:nth-child(4) {
+      max-width: 250px; /* Set max width */
+      word-wrap: break-word;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+
+    /* Ensure text appears in paragraph format */
+    td:nth-child(3) p,
+    td:nth-child(4) p {
+      margin: 0;
+      padding: 5px;
+      display: block;
+      word-wrap: break-word;
+      white-space: normal;
     }
   }
   #no-product {
