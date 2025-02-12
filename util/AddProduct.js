@@ -1,44 +1,58 @@
-// import Product from "./Product.js";
-var prod_id = 1;
-var prod_name, prod_desc, prod_img, prod_price;
-var base64String;
-function imageUploaded() {
+import Product from "./Product.js";
 
-    base64String = "";
+let title = document.getElementById("page_title");
+title.innerText = "Add Product";
 
-    let file = document.querySelector(
-        'input[type=file]')['files'][0];
+export function imageUploaded(callback) {
+    let fileInput = document.querySelector("input[type=file]");
+    let file = fileInput.files[0];
+
+    if (!file) {
+        console.log("No file selected");
+        return;
+    }
 
     let reader = new FileReader();
-    console.log("next");
 
-    reader.onload = function () {
-        base64String = reader.result.replace("data:", "")
-            .replace(/^.+,/, "");
+    reader.onload = function (event) {
+        let base64String = event.target.result;
+        console.log("Base64 Image: ", base64String);
 
-        imageBase64Stringsep = base64String;
-        // alert(imageBase64Stringsep);
-        console.log(base64String);
-    }
+        if (callback) callback(base64String);
+    };
+
     reader.readAsDataURL(file);
-    return base64String;
 }
 
 const productForm = document.getElementById("product-form");
-// const errorMessages = document.getElementById("errorMessages");
 
 productForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const { name, description, price } = productForm.elements;
-    prod_name = name.value;
-    prod_desc = description.value;
-    prod_price = price.value;
-    prod_img = imageUploaded();
-    localStorage.setItem('')
+    let product_list = localStorage.getItem("crud_product")
+        ? JSON.parse(localStorage.getItem("crud_product"))
+        : [];
+
+    // Determine the next prod_id dynamically
+    let prod_id = product_list.length > 0
+        ? Math.max(...product_list.map(p => p.prod_id)) + 1
+        : 1;
+
+    const name = document.getElementById("txt_product_name").value.trim();
+    const description = document.getElementById("txt_product_desc").value.trim();
+    const price = document.getElementById("txt_product_price").value.trim();
+    const fileInput = document.getElementById("img_product");
+
+    if (name === "" || description === "" || price === "" || fileInput.files.length === 0) {
+        alert("All fields are required!");
+        return;
+    }
+
+    imageUploaded((base64Image) => {
+        const product = new Product(prod_id, name, price, base64Image, description);
+        product_list.push(product);
+        localStorage.setItem("crud_product", JSON.stringify(product_list));
+
+        productForm.reset();
+    });
 });
-
-// const prod = new Product(prod_id, prod_name, prod_price, prod_img, prod_desc);
-
-// export { prod };
-prod_id++;

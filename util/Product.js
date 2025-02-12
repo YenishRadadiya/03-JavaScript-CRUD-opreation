@@ -6,8 +6,7 @@ class Product {
         this.prod_img = img;
         this.prod_desc = desc;
     }
+
 }
-
-
 
 export default Product;

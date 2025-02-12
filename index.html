@@ -2,13 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <title>Product 360</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script defer type="module" src="script.js"></script>
     <script defer type="module" src="./util/Product.js"></script>
+    <script type="module">
+        import { handleClearAll, handleOperation } from "./script.js";
+
+        window.handleClearAll = handleClearAll;
+        window.handleOperation = handleOperation;
+    </script>
 </head>
 
 <body>
@@ -18,7 +24,8 @@
                 <span>Product Page</span>
                 <div class="header-operation">
                     <div>
-                        <b>Filter by:</b> <input type="number" placeholder="Search by product Id" />
+                        <b>Filter by:</b>
+                        <input type="number" placeholder="Search by product Id" />
                         <button>Search</button>
                     </div>
                     <div>
@@ -30,15 +37,16 @@
                                 <option value="price">Price</option>
                             </select>
                             <button>Sort<i class="fa fa-sort"></i></button>
-                            <button onclick="document.location.href='./Pages/AddProduct.html'">Add <i
-                                    class="fa fa-plus"></i></button>
+                            <button onclick="document.location.href='./Pages/AddProduct.html'">
+                                Add <i class="fa fa-plus"></i>
+                            </button>
+                            <button class="btn-dlt" onclick="handleClearAll()">Clear All</button>
                         </div>
-
                     </div>
                 </div>
             </div>
             <div class="product-table">
-                <table>
+                <table id="product_table">
                     <tr>
                         <th>No.</th>
                         <th>Product</th>
@@ -47,25 +55,13 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td style="width: 2%;">1</td>
-                        <td style="width: 30%;"><img
-                                src="https://rukminim2.flixcart.com/image/612/612/xif0q/nut-dry-fruit/b/w/c/500-100-natural-premium-mix-dry-fruits-healthy-nutmixed-1-mason-original-imahypybbjhjgnpz.jpeg?q=70"
-                                alt="Product1 "></td>
-                        <td style="width: 15%;">Mobile</td>
-                        <td>It is mobile phone</td>
-                        <td style="width: 5%;">$360</td>
-                        <td style="width: 10%;"><Button>View<i class="fa fa-eye"></i></Button>
-                            <Button id="btn-edit">Edit<i class="fa fa-edit"></i></Button>
-                            <Button id="btn-dlt">Delete<i class="fa">&#xf014;</i></Button>
-                        </td>
-                    </tr>
                 </table>
             </div>
+            <div id="no-product">
+                <img src="asset/no-product.jpg" alt="No Product found ">
+            </div>
         </div>
-
     </div>
-
 </body>
 
 </html>
