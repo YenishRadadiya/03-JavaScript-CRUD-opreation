@@ -10,10 +10,11 @@
     <script defer type="module" src="script.js"></script>
     <script defer type="module" src="./util/Product.js"></script>
     <script type="module">
-        import { handleClearAll, handleOperation } from "./script.js";
+        import { handleClearAll, handleOperation, searchProduct } from "./script.js";
 
         window.handleClearAll = handleClearAll;
         window.handleOperation = handleOperation;
+        window.searchProduct = searchProduct;
     </script>
 </head>
 
@@ -25,8 +26,8 @@
                 <div class="header-operation">
                     <div>
                         <b>Filter by:</b>
-                        <input type="number" placeholder="Search by product Id" />
-                        <button>Search</button>
+                        <input type="number" placeholder="Search by product Id" id="search_id" />
+                        <button onclick="searchProduct()">Search</button>
                     </div>
                     <div>
                         <div>
@@ -36,7 +37,7 @@
                                 <option value="name">Name</option>
                                 <option value="price">Price</option>
                             </select>
-                            <button>Sort<i class="fa fa-sort"></i></button>
+                            <button id="sortButton">Sort <i class="fa fa-sort"></i></button>
                             <button onclick="document.location.href='./Pages/AddProduct.html'">
                                 Add <i class="fa fa-plus"></i>
                             </button>
@@ -47,14 +48,6 @@
             </div>
             <div class="product-table">
                 <table id="product_table">
-                    <tr>
-                        <th>No.</th>
-                        <th>Product</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
                 </table>
             </div>
             <div id="no-product">
