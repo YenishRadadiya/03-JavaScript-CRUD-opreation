@@ -7,9 +7,6 @@
 .container {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: white;
 
@@ -33,6 +30,7 @@
   }
   .product_data {
     display: flex;
+    justify-content: space-around;
   }
 
   .left-container {
@@ -86,5 +84,17 @@
       color: #43474d;
       margin-right: 20px;
     }
+  }
+}
+@media (max-width: 768px) {
+  .product_data {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-container,
+  .right-container {
+    width: 90%;
+    height: auto;
   }
 }
