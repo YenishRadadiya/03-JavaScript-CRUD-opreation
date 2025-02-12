@@ -44,6 +44,11 @@ prod_desc.addEventListener("input", function () {
         prod_desc.value = prod_desc.value.substring(0, 150);
     }
 });
+document.getElementById("txt_product_price").addEventListener("input", function (event) {
+    if (this.value < 0) {
+        this.value = ""; // Reset field if a negative value is entered
+    }
+});
 
 // File validation on file selection
 fileInput.addEventListener("change", function () {

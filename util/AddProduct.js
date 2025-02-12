@@ -44,6 +44,12 @@ nameInput.addEventListener("input", function () {
         nameInput.value = nameInput.value.substring(0, 50); // Trim extra characters
     }
 });
+document.getElementById("txt_product_price").addEventListener("input", function (event) {
+    if (this.value < 0) {
+        this.value = ""; // Reset field if a negative value is entered
+    }
+});
+
 
 //  validation for Description (200 characters limit)
 descriptionInput.addEventListener("input", function () {
